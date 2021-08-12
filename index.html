@@ -17,6 +17,11 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $clientIp = $remote;
         }
 
-        echo  $clientIp;die;
+        if($request->name) {
+            $message = "Greetings ".$request->name;
+            return response()->json(['ip' => $clientIp, "message" => $message]);
+        } else {
+            return response()->json(['ip' => $ip]);
+        }
 
 ?>
