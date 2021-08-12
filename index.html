@@ -21,11 +21,11 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             header("Content-Type: application/json; charset=UTF-8");
             header("Custom-Header: x-hello-world");
 
-        if($request->name) {
+        if($_GET['name']) {
             $message = "Greetings ".$request->name;
-            return response()->json(['ip' => $clientIp, "message" => $message]);
+            return "{['ip' => $clientIp, "message" => $message]}";
         } else {
-            return response()->json(['ip' => $ip]);
+            return "{['ip' => $ip]}";
         }
 
 ?>
