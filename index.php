@@ -22,7 +22,7 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             header("Custom-Header: x-hello-world");
 
         if($_GET['name']) {
-            $message = "Greetings ".$request->name;
+            $message = "Greetings ".$_GET['name'];
             return "{['ip' => $clientIp, "message" => $message]}";
         } else {
             return "{['ip' => $ip]}";
