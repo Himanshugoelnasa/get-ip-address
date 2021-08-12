@@ -1,5 +1,8 @@
 <?php
-if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+
+    $headers = apache_request_headers();
+    if(isset($headers['x-hello-world']) && $headers['x-hello-world'] != '') {
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
             $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
         }
@@ -16,16 +19,20 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
         else{
             $clientIp = $remote;
         }
+
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Max-Age: 3600");
-        header("x-hello-world: Chandan Kumar");
+        header("x-hello-world: ".$headers['x-hello-world']);
 
         if(isset($_GET['name'])) {
             echo json_encode(array("ip" => $clientIp, "mesaage" => "Greetings ".$_GET['name']));
         } else {
             echo json_encode(array("ip" => $clientIp));
         }
-            //echo json_encode(array("ip" => $clientIp));
+    } esle {
+        echo echo json_encode(array("error" => "header missing"));
+    }
 
+    
 ?>
