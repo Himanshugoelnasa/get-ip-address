@@ -17,6 +17,6 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $clientIp = $remote;
         }
 
-        echo  $clientIp;
+        echo  $clientIp;die;
 
 ?>
