@@ -23,9 +23,9 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
 
         if($_GET['name']) {
             $message = "Greetings ".$_GET['name'];
-            return "{['ip' => $clientIp, "message" => $message]}";
+            echo "{['ip' => $clientIp, "message" => $message]}";
         } else {
-            return "{['ip' => $ip]}";
+            echo "{['ip' => $ip]}";
         }
 
 ?>
