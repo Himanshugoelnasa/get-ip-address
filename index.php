@@ -1,6 +1,6 @@
 <?php
 
-    $headers = apache_request_headers();
+    $headers = getallheaders();
     if(isset($headers['x-hello-world']) && $headers['x-hello-world'] != '') {
         if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
