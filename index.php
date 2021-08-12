@@ -30,8 +30,8 @@
         } else {
             echo json_encode(array("ip" => $clientIp));
         }
-    } esle {
-        echo echo json_encode(array("error" => "header missing"));
+    } else {
+        echo json_encode(array("error" => "header missing"));
     }
 
     
