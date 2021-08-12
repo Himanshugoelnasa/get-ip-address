@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
             $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
@@ -16,12 +17,15 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
         else{
             $clientIp = $remote;
         }
+            header("Access-Control-Allow-Origin: *");
+            header("Content-Type: application/json; charset=UTF-8");
+            header("Custom-Header: x-hello-world");
 
-        if($request->name) {
+        if($_GET['name']) {
             $message = "Greetings ".$request->name;
-            return response()->json(['ip' => $clientIp, "message" => $message]);
+            return "{['ip' => $clientIp, "message" => $message]}";
         } else {
-            return response()->json(['ip' => $ip]);
+            return "{['ip' => $ip]}";
         }
 
 ?>
